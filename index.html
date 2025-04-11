@@ -1,0 +1,147 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Euroasiann ERP - Customer Onboarding</title>
+  <style>
+    body {
+      font-family: 'Segoe UI', sans-serif;
+      background: #f4f7fa;
+      margin: 0;
+      padding: 0;
+    }
+    .container {
+      max-width: 750px;
+      background: #fff;
+      margin: 40px auto;
+      padding: 30px 40px;
+      border-radius: 12px;
+      box-shadow: 0 10px 25px rgba(0, 0, 0, 0.08);
+    }
+    h2 {
+      text-align: center;
+      margin-bottom: 30px;
+      color: #333;
+    }
+    .form-group {
+      margin-bottom: 20px;
+    }
+    label {
+      font-weight: 600;
+      display: block;
+      margin-bottom: 8px;
+    }
+    input, select {
+      width: 100%;
+      padding: 10px;
+      border-radius: 6px;
+      border: 1px solid #ccc;
+      font-size: 15px;
+    }
+    .note {
+      font-size: 13px;
+      color: #777;
+      margin-top: 4px;
+    }
+    button {
+      background-color: #0066cc;
+      color: white;
+      border: none;
+      padding: 12px 25px;
+      border-radius: 6px;
+      font-size: 16px;
+      cursor: pointer;
+      display: block;
+      margin: 30px auto 0;
+    }
+    button:hover {
+      background-color: #004a99;
+    }
+  </style>
+</head>
+<body>
+
+  <div class="container">
+    <h2>Customer Onboarding – Euroasiann ERP</h2>
+    <form id="onboardForm">
+
+      <div class="form-group">
+        <label for="companyName">Shipping Company Name</label>
+        <input type="text" id="companyName" name="companyName" required />
+      </div>
+
+      <div class="form-group">
+        <label for="contactPerson">Primary Contact Person</label>
+        <input type="text" id="contactPerson" name="contactPerson" required />
+      </div>
+
+      <div class="form-group">
+        <label for="email">Official Email Address</label>
+        <input type="email" id="email" name="email" required />
+      </div>
+
+      <div class="form-group">
+        <label for="phone">Phone Number (with country code)</label>
+        <input type="text" id="phone" name="phone" required />
+      </div>
+
+      <div class="form-group">
+        <label for="country">Country of Operation</label>
+        <select id="country" name="country" required>
+          <option value="">-- Select Country --</option>
+          <option value="Netherlands">Netherlands</option>
+          <option value="India">India</option>
+          <option value="Singapore">Singapore</option>
+          <option value="United Kingdom">United Kingdom</option>
+          <option value="USA">United States</option>
+          <option value="UAE">United Arab Emirates</option>
+          <option value="Germany">Germany</option>
+          <option value="Other">Other</option>
+        </select>
+      </div>
+
+      <div class="form-group">
+        <label for="taxId">Company Tax ID / Number</label>
+        <input type="text" id="taxId" name="taxId" required />
+        <div class="note">Enter your GSTIN, VAT ID, EIN, or other official tax registration number.</div>
+      </div>
+
+      <div class="form-group">
+        <label for="vessels">Number of Vessels to Onboard</label>
+        <input type="number" id="vessels" name="vessels" min="1" required />
+        <div class="note">Pricing is based on the number of vessels only.</div>
+      </div>
+
+      <!-- Address Breakdown -->
+      <div class="form-group">
+        <label for="address1">Address Line 1</label>
+        <input type="text" id="address1" name="address1" required />
+      </div>
+
+      <div class="form-group">
+        <label for="address2">Address Line 2</label>
+        <input type="text" id="address2" name="address2" />
+      </div>
+
+      <div class="form-group">
+        <label for="city">City</label>
+        <input type="text" id="city" name="city" required />
+      </div>
+
+      <div class="form-group">
+        <label for="province">Province / State</label>
+        <input type="text" id="province" name="province" required />
+      </div>
+
+      <div class="form-group">
+        <label for="postalCode">Postal Code</label>
+        <input type="text" id="postalCode" name="postalCode" required />
+      </div>
+
+      <button type="submit">Proceed to Pricing</button>
+    </form>
+  </div>
+
+</body>
+</html>
