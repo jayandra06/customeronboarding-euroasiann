@@ -7,12 +7,12 @@
   <style>
     body {
       font-family: 'Segoe UI', sans-serif;
-      background: #f4f7fa;
+      background: #f9fbfc;
       margin: 0;
       padding: 0;
     }
     .container {
-      max-width: 750px;
+      max-width: 800px;
       background: #fff;
       margin: 40px auto;
       padding: 30px 40px;
@@ -30,7 +30,7 @@
     label {
       font-weight: 600;
       display: block;
-      margin-bottom: 8px;
+      margin-bottom: 6px;
     }
     input, select {
       width: 100%;
@@ -39,10 +39,22 @@
       border: 1px solid #ccc;
       font-size: 15px;
     }
-    .note {
-      font-size: 13px;
-      color: #777;
-      margin-top: 4px;
+    .phone-group {
+      display: flex;
+      gap: 10px;
+    }
+    .phone-group select {
+      flex: 1;
+    }
+    .phone-group input {
+      flex: 3;
+    }
+    .section-title {
+      font-size: 18px;
+      margin: 30px 0 10px;
+      color: #005a9e;
+      border-bottom: 1px solid #ddd;
+      padding-bottom: 4px;
     }
     button {
       background-color: #0066cc;
@@ -66,8 +78,11 @@
     <h2>Customer Onboarding – Euroasiann ERP</h2>
     <form id="onboardForm">
 
+      <!-- Basic Info -->
+      <div class="section-title">Company Details</div>
+
       <div class="form-group">
-        <label for="companyName">Company Name</label>
+        <label for="companyName">Shipping Company Name</label>
         <input type="text" id="companyName" name="companyName" required />
       </div>
 
@@ -81,65 +96,144 @@
         <input type="email" id="email" name="email" required />
       </div>
 
+      <!-- Phone Numbers -->
       <div class="form-group">
-        <label for="phone">Phone Number (with country code)</label>
-        <input type="text" id="phone" name="phone" required />
+        <label>Mobile Phone Number</label>
+        <div class="phone-group">
+          <select name="mobileCountryCode" required>
+            <option value="+31">🇳🇱 +31 (NL)</option>
+            <option value="+91">🇮🇳 +91 (IN)</option>
+            <option value="+1">🇺🇸 +1 (US)</option>
+            <option value="+44">🇬🇧 +44 (UK)</option>
+            <option value="+65">🇸🇬 +65 (SG)</option>
+          </select>
+          <input type="tel" name="mobilePhone" placeholder="Mobile number" required />
+        </div>
       </div>
 
       <div class="form-group">
-        <label for="country">Country of Operation</label>
+        <label>Desk Phone Number</label>
+        <div class="phone-group">
+          <select name="deskCountryCode" required>
+            <option value="+31">🇳🇱 +31 (NL)</option>
+            <option value="+91">🇮🇳 +91 (IN)</option>
+            <option value="+1">🇺🇸 +1 (US)</option>
+            <option value="+44">🇬🇧 +44 (UK)</option>
+            <option value="+65">🇸🇬 +65 (SG)</option>
+          </select>
+          <input type="tel" name="deskPhone" placeholder="Desk phone number" required />
+        </div>
+      </div>
+
+      <!-- Address -->
+      <div class="form-group">
+        <label for="address1">Address Line 1</label>
+        <input type="text" id="address1" name="address1" required />
+      </div>
+      <div class="form-group">
+        <label for="address2">Address Line 2</label>
+        <input type="text" id="address2" name="address2" />
+      </div>
+      <div class="form-group">
+        <label for="city">City</label>
+        <input type="text" id="city" name="city" required />
+      </div>
+      <div class="form-group">
+        <label for="province">Province / State</label>
+        <input type="text" id="province" name="province" required />
+      </div>
+      <div class="form-group">
+        <label for="postalCode">Postal Code</label>
+        <input type="text" id="postalCode" name="postalCode" required />
+      </div>
+      <div class="form-group">
+        <label for="country">Country</label>
         <select id="country" name="country" required>
           <option value="">-- Select Country --</option>
           <option value="Netherlands">Netherlands</option>
           <option value="India">India</option>
+          <option value="United States">USA</option>
+          <option value="United Kingdom">UK</option>
           <option value="Singapore">Singapore</option>
-          <option value="United Kingdom">United Kingdom</option>
-          <option value="USA">United States</option>
-          <option value="UAE">United Arab Emirates</option>
           <option value="Germany">Germany</option>
           <option value="Other">Other</option>
         </select>
       </div>
 
-      <div class="form-group">
-        <label for="taxId">Company Tax ID / Number</label>
-        <input type="text" id="taxId" name="taxId" required />
-        <div class="note">Enter your GSTIN, VAT ID, EIN, or other official tax registration number.</div>
-      </div>
-
+      <!-- Vessel Count -->
       <div class="form-group">
         <label for="vessels">Number of Vessels to Onboard</label>
         <input type="number" id="vessels" name="vessels" min="1" required />
-        <div class="note">Pricing is based on the number of vessels only.</div>
       </div>
 
-      <!-- Address Breakdown -->
+      <!-- Tax Info -->
+      <div class="section-title">Tax Information</div>
       <div class="form-group">
-        <label for="address1">Address Line 1</label>
-        <input type="text" id="address1" name="address1" required />
+        <label for="taxId">Tax ID / VAT / GST / EIN</label>
+        <input type="text" id="taxId" name="taxId" required />
       </div>
 
+      <!-- Banking Info -->
+      <div class="section-title">Banking Details (For Auto-Debit)</div>
       <div class="form-group">
-        <label for="address2">Address Line 2</label>
-        <input type="text" id="address2" name="address2" />
+        <label for="accountName">Account Holder Name</label>
+        <input type="text" id="accountName" name="accountName" required />
       </div>
-
       <div class="form-group">
-        <label for="city">City</label>
-        <input type="text" id="city" name="city" required />
+        <label for="bankName">Bank Name</label>
+        <input type="text" id="bankName" name="bankName" required />
       </div>
-
       <div class="form-group">
-        <label for="province">Province / State</label>
-        <input type="text" id="province" name="province" required />
+        <label for="iban">IBAN / Account Number</label>
+        <input type="text" id="iban" name="iban" required />
       </div>
-
       <div class="form-group">
-        <label for="postalCode">Postal Code</label>
-        <input type="text" id="postalCode" name="postalCode" required />
+        <label for="swift">SWIFT / BIC Code</label>
+        <input type="text" id="swift" name="swift" />
       </div>
 
-      <button type="submit">Proceed</button>
+      <!-- Invoicing Info -->
+      <div class="section-title">Invoicing Details</div>
+      <div class="form-group">
+        <label for="invoiceEmail">Email for Invoicing</label>
+        <input type="email" id="invoiceEmail" name="invoiceEmail" required />
+      </div>
+      <div class="form-group">
+        <label for="billingAddress1">Billing Address Line 1</label>
+        <input type="text" id="billingAddress1" name="billingAddress1" required />
+      </div>
+      <div class="form-group">
+        <label for="billingAddress2">Billing Address Line 2</label>
+        <input type="text" id="billingAddress2" name="billingAddress2" />
+      </div>
+      <div class="form-group">
+        <label for="billingCity">Billing City</label>
+        <input type="text" id="billingCity" name="billingCity" required />
+      </div>
+      <div class="form-group">
+        <label for="billingProvince">Billing Province / State</label>
+        <input type="text" id="billingProvince" name="billingProvince" required />
+      </div>
+      <div class="form-group">
+        <label for="billingPostal">Billing Postal Code</label>
+        <input type="text" id="billingPostal" name="billingPostal" required />
+      </div>
+      <div class="form-group">
+        <label for="billingCountry">Billing Country</label>
+        <select id="billingCountry" name="billingCountry" required>
+          <option value="">-- Select Country --</option>
+          <option value="Netherlands">Netherlands</option>
+          <option value="India">India</option>
+          <option value="USA">United States</option>
+          <option value="UK">United Kingdom</option>
+          <option value="Germany">Germany</option>
+          <option value="Singapore">Singapore</option>
+          <option value="Other">Other</option>
+        </select>
+      </div>
+
+      <!-- Submit -->
+      <button type="submit">Proceed to Pricing</button>
     </form>
   </div>
 
