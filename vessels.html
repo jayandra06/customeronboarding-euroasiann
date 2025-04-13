@@ -1,0 +1,173 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Vessel Management</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      padding: 20px;
+    }
+
+    .header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+
+    .dropdown {
+      position: relative;
+      display: inline-block;
+    }
+
+    .dropdown-content {
+      display: none;
+      position: absolute;
+      right: 0;
+      background-color: #f9f9f9;
+      min-width: 150px;
+      box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
+      z-index: 1;
+    }
+
+    .dropdown-content button {
+      background: none;
+      border: none;
+      width: 100%;
+      padding: 10px;
+      text-align: left;
+      cursor: pointer;
+    }
+
+    .dropdown:hover .dropdown-content {
+      display: block;
+    }
+
+    table {
+      width: 100%;
+      border-collapse: collapse;
+      margin-top: 20px;
+    }
+
+    th, td {
+      border: 1px solid #ddd;
+      padding: 8px;
+      text-align: center;
+    }
+
+    th {
+      background-color: #f2f2f2;
+    }
+
+    .add-row {
+      background-color: #e8f4ff;
+    }
+
+    .pagination {
+      margin-top: 20px;
+      text-align: right;
+    }
+
+    .pagination button {
+      margin: 0 2px;
+      padding: 5px 10px;
+      cursor: pointer;
+    }
+  </style>
+</head>
+<body>
+
+  <div class="header">
+    <h2>Vessel List</h2>
+    <div class="dropdown">
+      <button>Add Vessel ▾</button>
+      <div class="dropdown-content">
+        <button onclick="addInputRow()">Add Vessel</button>
+        <button>Upload Excel</button>
+      </div>
+    </div>
+  </div>
+
+  <div id="add-vessel-container"></div>
+
+  <table id="vessel-table">
+    <thead>
+      <tr>
+        <th>IMO Number</th>
+        <th>Vessel Name</th>
+        <th>Ex Vessel Name</th>
+        <th>Actions</th>
+      </tr>
+    </thead>
+    <tbody id="vessel-body">
+      <tr>
+        <td>1234567</td>
+        <td>Sea Voyager</td>
+        <td>Ocean Explorer</td>
+        <td>
+          <button>Edit</button>
+          <button>Delete</button>
+        </td>
+      </tr>
+      <tr>
+        <td>7654321</td>
+        <td>Marine Star</td>
+        <td>Blue Whale</td>
+        <td>
+          <button>Edit</button>
+          <button>Delete</button>
+        </td>
+      </tr>
+    </tbody>
+  </table>
+
+  <div class="pagination">
+    <button>&laquo; Prev</button>
+    <button>1</button>
+    <button>2</button>
+    <button>3</button>
+    <button>Next &raquo;</button>
+  </div>
+
+  <script>
+    function addInputRow() {
+      const container = document.getElementById("add-vessel-container");
+
+      const row = document.createElement("div");
+      row.classList.add("add-row");
+      row.innerHTML = `
+        <table>
+          <tr class="add-row">
+            <td><input type="text" placeholder="IMO Number"></td>
+            <td><input type="text" placeholder="Vessel Name"></td>
+            <td><input type="text" placeholder="Ex Vessel Name"></td>
+            <td><button onclick="saveRow(this)">Save</button></td>
+          </tr>
+        </table>
+      `;
+      container.appendChild(row);
+    }
+
+    function saveRow(button) {
+      const row = button.closest("tr");
+      const inputs = row.querySelectorAll("input");
+      const values = Array.from(inputs).map(i => i.value);
+
+      const newRow = document.createElement("tr");
+      newRow.innerHTML = `
+        <td>${values[0]}</td>
+        <td>${values[1]}</td>
+        <td>${values[2]}</td>
+        <td>
+          <button>Edit</button>
+          <button>Delete</button>
+        </td>
+      `;
+
+      document.getElementById("vessel-body").appendChild(newRow);
+      row.parentElement.parentElement.remove(); // remove input row
+    }
+  </script>
+
+</body>
+</html>
