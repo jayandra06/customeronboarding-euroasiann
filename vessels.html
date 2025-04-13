@@ -182,7 +182,7 @@
 
     function addInputRow() {
       if (currentVessels >= vesselLimit) {
-        alert("Your subscription allows only 5 vessels.\nTo add more, please contact sales@euroasianngroup.com");
+        alert("You have reached the maximum of 5 vessels.\nTo add more, please contact sales@euroasianngroup.com.");
         return;
       }
 
@@ -234,6 +234,10 @@
     }
 
     function showModal() {
+      if (currentVessels >= vesselLimit) {
+        alert("You have reached the maximum of 5 vessels.\nTo add more, please contact sales@euroasianngroup.com.");
+        return;
+      }
       document.getElementById("uploadModal").style.display = "block";
     }
 
