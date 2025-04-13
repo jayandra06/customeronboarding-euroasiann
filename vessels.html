@@ -26,7 +26,7 @@
       right: 0;
       background-color: #f9f9f9;
       min-width: 150px;
-      box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
+      box-shadow: 0px 8px 16px rgba(0,0,0,0.2);
       z-index: 1;
     }
 
@@ -46,7 +46,7 @@
     table {
       width: 100%;
       border-collapse: collapse;
-      margin-top: 20px;
+      margin-top: 10px;
     }
 
     th, td {
@@ -73,6 +73,17 @@
       padding: 5px 10px;
       cursor: pointer;
     }
+
+    .inline-add-control {
+      display: flex;
+      justify-content: flex-end;
+      margin-top: 20px;
+    }
+
+    .inline-add-control button {
+      padding: 6px 12px;
+      cursor: pointer;
+    }
   </style>
 </head>
 <body>
@@ -88,6 +99,10 @@
     </div>
   </div>
 
+  <div class="inline-add-control">
+    <button onclick="addInputRow()">+ Add Vessel</button>
+  </div>
+
   <div id="add-vessel-container"></div>
 
   <table id="vessel-table">
@@ -96,6 +111,7 @@
         <th>IMO Number</th>
         <th>Vessel Name</th>
         <th>Ex Vessel Name</th>
+        <th>Vessel Type</th>
         <th>Actions</th>
       </tr>
     </thead>
@@ -104,6 +120,7 @@
         <td>1234567</td>
         <td>Sea Voyager</td>
         <td>Ocean Explorer</td>
+        <td>Bulk Carrier</td>
         <td>
           <button>Edit</button>
           <button>Delete</button>
@@ -113,6 +130,7 @@
         <td>7654321</td>
         <td>Marine Star</td>
         <td>Blue Whale</td>
+        <td>Container Ship</td>
         <td>
           <button>Edit</button>
           <button>Delete</button>
@@ -141,6 +159,7 @@
             <td><input type="text" placeholder="IMO Number"></td>
             <td><input type="text" placeholder="Vessel Name"></td>
             <td><input type="text" placeholder="Ex Vessel Name"></td>
+            <td><input type="text" placeholder="Vessel Type"></td>
             <td><button onclick="saveRow(this)">Save</button></td>
           </tr>
         </table>
@@ -151,13 +170,19 @@
     function saveRow(button) {
       const row = button.closest("tr");
       const inputs = row.querySelectorAll("input");
-      const values = Array.from(inputs).map(i => i.value);
+      const values = Array.from(inputs).map(i => i.value.trim());
+
+      if (values.some(val => val === '')) {
+        alert("Please fill all fields.");
+        return;
+      }
 
       const newRow = document.createElement("tr");
       newRow.innerHTML = `
         <td>${values[0]}</td>
         <td>${values[1]}</td>
         <td>${values[2]}</td>
+        <td>${values[3]}</td>
         <td>
           <button>Edit</button>
           <button>Delete</button>
